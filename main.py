@@ -6,7 +6,7 @@ from discord_slash import SlashCommandOptionType
 from discord_slash.utils import manage_commands
 
 client = discord.Client(intents=discord.Intents.all())
-slash = SlashCommand(client, auto_register=True)
+slash = SlashCommand(client, auto_register=True, auto_delete=True)
 load_dotenv('.env')
 
 guild_ids = [799092380095348736]
