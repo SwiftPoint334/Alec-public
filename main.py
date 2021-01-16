@@ -77,9 +77,30 @@ async def _addrole(ctx, user, role):
 
 @slash.slash(name="removerole", description="Removes a role from a user.", options=[manage_commands.create_option("user", "the user you're removing the role from", SlashCommandOptionType.USER, True), manage_commands.create_option("role", "the role you want to remove.", SlashCommandOptionType.ROLE, True)])
 async def _removerole(ctx, user, role):
-  await user.remove_roles(role)
-  embed=discord.Embed(title=":white_check_mark: Role removed", description="{role} has been removed from {user}")
-  await ctx.send(embeds=[embed])
+  if ctx.author.guild_permissions.administrator == True:
+    await user.remove_roles(role)
+    embed=discord.Embed(title=":white_check_mark: Role removed", description="{role} has been removed from {user}")
+    await ctx.send(embeds=[embed])
+  else:
+    await ctx.send("You aren't an administrator!")
+
+@slash.slash(name="mute", description="Mutes someone.", options=[manage_commands.create_option("user", "the user you're muting", SlashCommandOptionType.USER, True)])
+async def _mute(ctx, user):
+  if ctx.author.guild_permissions.administrator == True:
+    embed=discord.Embed(title=":no_entry_sign: Member muted", description=f"{user} has been muted.")
+    await user.set_permissions.send_messages == False
+    await ctx.send(embeds=[embed])
+  else:
+    await ctx.send("You're not an administrator!")
+
+@slash.slash(name="unmute", description="unmutes someone.", options=[manage_commands.create_option("user", "the user you're unmuting", SlashCommandOptionType.USER, True)])
+async def _unmute(ctx, user):
+  if ctx.author.guild_permissions.administrator == True:
+    embed=discord.Embed(title=":white_check_mark: Member unmuted", description=f"{user} has been unmuted.")
+    await user.set_permissions.send_messages == True
+    await ctx.send(embeds=[embed])
+  else:
+    await ctx.send("You're not an administrator!")
 
 @slash.slash(name="dev", description="This is a test command.")
 async def _dev(ctx):
@@ -87,8 +108,6 @@ async def _dev(ctx):
     await ctx.send("Poggers :white_check_mark:")
   else:
     await ctx.send("Something went wrong.")
-
-
   
 
 
