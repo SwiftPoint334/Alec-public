@@ -1,4 +1,4 @@
-# Alec-public
+# Alec
 
 **Hey there!** Alec is a multi-purpose Discord bot, Alec is fairly new bot and isn't used in any large servers yet, just by adding Alec you're helping our project!
 
@@ -25,7 +25,7 @@ DISCORD_BOT_SECRET=jfhgdfjvhdskjafgds6er545.5467trghefv
 ```
 4. Run it! `python3 main.py`
 
-# Sponsor us!
+# Sponsor me!
 
 My name is Parker, I'm a student that lives in Canada, I'm hoping to get some donations to support my development so I have some motivation to continue my work.
 
