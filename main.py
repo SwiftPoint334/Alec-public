@@ -77,10 +77,12 @@ async def _addrole(ctx, user, role):
 
 @slash.slash(name="removerole", description="Removes a role from a user.", options=[manage_commands.create_option("user", "the user you're removing the role from", SlashCommandOptionType.USER, True), manage_commands.create_option("role", "the role you want to remove.", SlashCommandOptionType.ROLE, True)])
 async def _removerole(ctx, user, role):
-  await user.remove_roles(role)
-  embed=discord.Embed(title=":white_check_mark: Role removed", description="{role} has been removed from {user}")
-  await ctx.send(embeds=[embed])
-
+  if ctx.author.guild_permissions.administrator == True:
+    await user.remove_roles(role)
+    embed=discord.Embed(title=":white_check_mark: Role removed", description="{role} has been removed from {user}")
+    await ctx.send(embeds=[embed])
+  else:
+    await ctx.send("You aren't an administrator!")
 
   
 
