@@ -9,7 +9,7 @@ client = discord.Client(intents=discord.Intents.all())
 slash = SlashCommand(client, auto_register=True, auto_delete=True)
 load_dotenv('.env')
 
-guild_ids = [799092380095348736]
+guild_ids = [799092380095348736, 752693493675327528]
 
 @client.event
 async def on_ready():
@@ -102,6 +102,12 @@ async def _unmute(ctx, user):
   else:
     await ctx.send("You're not an administrator!")
 
+@slash.slash(name="dev", description="This is a test command.")
+async def _dev(ctx):
+  if ctx.author.has_role(800146661144788995):
+    await ctx.send("Poggers :white_check_mark:")
+  else:
+    await ctx.send("Something went wrong.")
   
 
 
