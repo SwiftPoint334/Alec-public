@@ -84,6 +84,24 @@ async def _removerole(ctx, user, role):
   else:
     await ctx.send("You aren't an administrator!")
 
+@slash.slash(name="mute", description="Mutes someone.", options=[manage_commands.create_option("user", "the user you're muting", SlashCommandOptionType.USER, True)])
+async def _mute(ctx, user):
+  if ctx.author.guild_permissions.administrator == True:
+    embed=discord.Embed(title=":no_entry_sign: Member muted", description=f"{user} has been muted.")
+    await user.set_permissions.send_messages == False
+    await ctx.send(embeds=[embed])
+  else:
+    await ctx.send("You're not an administrator!")
+
+@slash.slash(name="unmute", description="unmutes someone.", options=[manage_commands.create_option("user", "the user you're unmuting", SlashCommandOptionType.USER, True)])
+async def _unmute(ctx, user):
+  if ctx.author.guild_permissions.administrator == True:
+    embed=discord.Embed(title=":white_check_mark: Member unmuted", description=f"{user} has been unmuted.")
+    await user.set_permissions.send_messages == True
+    await ctx.send(embeds=[embed])
+  else:
+    await ctx.send("You're not an administrator!")
+
   
 
 
